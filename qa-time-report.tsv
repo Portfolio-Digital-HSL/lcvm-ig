@@ -1,0 +1,10 @@
+Source File	Size	loadResources	load	generateSnapshots	load-configure	scan	loadDepInfo	loadInfo	checkR4R4B	generateNarratives	validate	loadLists	checkConformanceResources	checkConformanceResources2	checkConformanceResources3	generateLogicalMaps	validateExpressions	scanForUsageStats	checkURLsUnique	processProvenanceDetails	generate1	generate2	generateLogicals	makeDependencies	generateExampleZip	generateValidationPack	scanProfilesForR5	scanExamplesForR5
+/fsh-generated/resources/ImplementationGuide-org.mangaradigital.fhir.lcvm-ig.json	1594	-	0	0	0	0	0	0	12	170	0	0	0	0	0	0	0	0	0	0	62	68	0	0	0	3	0	0
+fsh-generated/resources/Patient-PatientExample.json	268	10	0	0	1	0	0	0	0	4	0	0	0	0	0	0	0	0	0	0	5	10	0	0	0	0	0	0
+fsh-generated/resources/StructureDefinition-MyPatient.json	616	11	0	58	0	0	1	0	0	1480	0	0	1	0	0	0	0	1	0	0	203	814	0	0	0	10	0	1
+/fsh-generated/includes/menu.xml	1043	-	-	-	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+/fsh-generated/includes/fsh-link-references.md	93	-	-	-	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+/input/pagecontent/index.md	76	-	-	-	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+/template/config	0	-	-	-	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+/template/config/_config.yml	140	-	-	-	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+/temp/pages/_includes/artifacts.xml	2128	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	1	0	0	0	0	0	0

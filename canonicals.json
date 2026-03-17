@@ -1,0 +1,14 @@
+[{
+  "id" : "org.mangaradigital.fhir.lcvm-ig",
+  "type" : "ImplementationGuide",
+  "url" : "https://ig.mangaradigital.org/lcvm-ig/ImplementationGuide/org.mangaradigital.fhir.lcvm-ig",
+  "version" : "0.1.0",
+  "name" : "LCVMIG"
+},
+{
+  "id" : "MyPatient",
+  "type" : "StructureDefinition",
+  "url" : "https://ig.mangaradigital.org/lcvm-ig/StructureDefinition/MyPatient",
+  "version" : "0.1.0",
+  "name" : "MyPatient"
+}]

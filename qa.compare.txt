@@ -1,0 +1,20 @@
+LCVMIG : Validation Results
+=========================================
+
+err = 0, warn = 4, info = 1
+$--
+Generated $--. FHIR version $-- for org.mangaradigital.fhir.lcvm-ig#$-- (canonical = https://ig.mangaradigital.org/lcvm-ig)
+ Build Errors : 0 / 4 / 0
+ /home/runner/work/lcvm-ig/lcvm-ig/fsh-generated/resources/ImplementationGuide-org.mangaradigital.fhir.lcvm-ig : 0 / 0 / 1
+ /home/runner/work/lcvm-ig/lcvm-ig/fsh-generated/resources/Patient-PatientExample : 0 / 0 / 1
+ /home/runner/work/lcvm-ig/lcvm-ig/fsh-generated/resources/StructureDefinition-MyPatient : 0 / 0 / 2
+</table>
+== n/a ==
+WARNING: 1: The HTML fragment 'ip-statements.xhtml' is not included anywhere in the produced implementation guide
+WARNING: 2: An HTML fragment from the set [cross-version-analysis.xhtml, cross-version-analysis-inline.xhtml] is not included anywhere in the produced implementation guide
+WARNING: 3: An HTML fragment from the set [dependency-table.xhtml, dependency-table-short.xhtml, dependency-table-nontech.xhtml] is not included anywhere in the produced implementation guide
+WARNING: 4: The HTML fragment 'globals-table.xhtml' is not included anywhere in the produced implementation guide
+== fsh-generated/resources/ImplementationGuide-org.mangaradigital.fhir.lcvm-ig.json ==
+== fsh-generated/resources/Patient-PatientExample.json ==
+== fsh-generated/resources/StructureDefinition-MyPatient.json ==
+INFORMATION: StructureDefinition/MyPatient: StructureDefinition.snapshot.element[4].binding.extension[0]: The extension http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValueSet|5.2.0 is deprecated
