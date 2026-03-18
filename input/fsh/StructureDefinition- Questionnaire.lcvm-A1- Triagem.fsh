@@ -103,9 +103,9 @@ Usage: #definition
 * item[=].item[=].answerValueSet = "https://terminologia.saude.gov.br/fhir/ValueSet/BRUnidadeFederativa"
 
 // ============================================================
-// SEÇÃO 1: TIPO DE VIOLÊNCIA  (DE12–DE13)
+// SEÇÃO 1: TIPO DE VIOLÊNCIA  
 // ============================================================
-* item[+].linkId = "LCVMA1DE1"
+* item[+].linkId = "LCVMA1DE001"
 * item[=].text   = "Seção 1 — Tipo de Violência"
 * item[=].type   = #group
 * item[=].item[=].text   = "Das afirmativas abaixo, quais representam algo que você já viveu ou vivencia?"
@@ -120,13 +120,10 @@ Usage: #definition
 * item[=].item[=].readOnly = true
 * item[=].item[=].extension[+].url = $calcExp
 * item[=].item[=].extension[=].valueExpression.language    = #text/fhirpath
-* item[=].item[=].extension[=].valueExpression.description =
-    "Somar os pontos de cada uma das respostas à pergunta LCVM.A1.DE12"
-* item[=].item[=].extension[=].valueExpression.expression  =
-    "%resource.item.where(linkId='/secao1-tipo-violencia/afirmativas').answer.valueCoding.extension.where(url='http://hl7.org/fhir/StructureDefinition/ordinalValue').value.aggregate($total + $this, 0)"
+* item[=].item[=].extension[=].valueExpression.description = "Somar os pontos de cada uma das respostas à pergunta LCVM.A1.DE001"
 
 // ============================================================
-//  SEÇÃO 2: TRATAMENTO SERVIÇOS DE SAÚDE  (DE14–DE15)
+//  SEÇÃO 2: TRATAMENTO SERVIÇOS DE SAÚDE 
 // ============================================================
 * item[+].linkId = "/secao2-tratamento-servicos"
 * item[=].text   = "Seção 2 — Tratamento Serviços de Saúde"
