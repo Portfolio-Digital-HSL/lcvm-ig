@@ -1,48 +1,55 @@
 {
   "resourceType": "Questionnaire",
-  "id": "lcvm-A1-triagem",
-  "meta": {
-    "profile": [
-      "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire"
-    ]
-  },
   "url": "https://mangara.hsl.org.br/fhir/Questionnaire/lcvm-a1-triagem",
   "version": "0.3.0",
-  "title": "LCVM — A1 Triagem",
-  "description": "Instrumento de Triagem da Linha de Cuidado de Combate à Violência contra a Mulher (LCVM), etapa A1, para identificação de mulheres em situação de violência e encaminhamento para serviços de saúde ou de proteção às mulheres.",
   "status": "draft",
   "language": "pt-BR",
   "subjectType": ["Patient"],
   "item": [
     {
-      "linkId": "/cadastro",
+      "linkId": "cadastro",
       "text": "Cadastro",
       "type": "group",
       "required": true,
       "item": [
         {
-          "linkId": "/cadastro/cpf",
+          "linkId": "LCVMA1DE01",
           "text": "CPF",
           "definition": "Identificador pessoal da mulher, número do CPF. Informações cadastrais extraídas da API do CADSUS.",
           "type": "string",
-          "required": true
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-constraint",
+              "extension": [
+                {
+                  "url": "expression",
+                  "valueString": "answer.value.matches('^[0-9]{11}$')"
+                },
+                {
+                  "url": "human",
+                  "valueString": "CPF deve conter exatamente 11 dígitos numéricos"
+                }
+              ]
+            }
+          ]
         },
         {
-          "linkId": "/cadastro/nome-completo",
+          "linkId": "LCVMA1DE02",
           "text": "Nome completo",
           "definition": "Nome completo da mulher, seguindo preenchimento do CADSUS.",
           "type": "string",
           "required": true
         },
         {
-          "linkId": "/cadastro/nome-social",
+          "linkId": "LCVMA1DE03",
           "text": "Nome Social",
           "definition": "Nome social utilizado, devendo ser preenchido pela mulher.",
           "type": "string",
           "required": true
         },
         {
-          "linkId": "/cadastro/nacionalidade",
+          "linkId": "LCVMA1DE04",
           "text": "Nacionalidade",
           "definition": "País de nacionalidade do paciente.",
           "type": "choice",
@@ -50,14 +57,14 @@
           "answerValueSet": "http://hl7.org/fhir/ValueSet/iso3166-1-2"
         },
         {
-          "linkId": "/cadastro/data-nascimento",
+          "linkId": "LCVMA1DE05",
           "text": "Data de Nascimento",
           "definition": "Data de Nascimento do Paciente.",
           "type": "date",
           "required": true
         },
         {
-          "linkId": "/cadastro/identidade-genero",
+          "linkId": "LCVMA1DE06",
           "text": "Identidade de Gênero",
           "definition": "Como o paciente identifica o seu gênero sexual.",
           "type": "choice",
@@ -66,7 +73,7 @@
           "answerValueSet": "https://terminologia.saude.gov.br/fhir/ValueSet/BRIdentidadeGenero"
         },
         {
-          "linkId": "/cadastro/raca-cor",
+          "linkId": "LCVMA1DE07",
           "text": "Raça/Cor",
           "type": "choice",
           "required": true,
@@ -74,7 +81,7 @@
           "answerValueSet": "https://terminologia.saude.gov.br/fhir/ValueSet/BRRacaCor"
         },
         {
-          "linkId": "/cadastro/etnia",
+          "linkId": "LCVMA1DE08",
           "text": "Etnia",
           "type": "choice",
           "required": false,
@@ -82,20 +89,20 @@
           "answerValueSet": "https://terminologia.saude.gov.br/fhir/ValueSet/BREtniaIndigena"
         },
         {
-          "linkId": "/cadastro/telefone",
+          "linkId": "LCVMA1DE09",
           "text": "Telefone",
           "type": "string",
           "required": true
         },
         {
-          "linkId": "/cadastro/cidade",
+          "linkId": "LCVMA1DE10A",
           "text": "Cidade",
           "type": "choice",
           "required": true,
           "answerValueSet": "https://terminologia.saude.gov.br/fhir/ValueSet/BRMunicipio"
         },
         {
-          "linkId": "/cadastro/uf",
+          "linkId": "LCVMA1DE11A",
           "text": "UF",
           "type": "choice",
           "required": true,
@@ -105,12 +112,12 @@
       ]
     },
     {
-      "linkId": "/secao1-tipo-violencia",
+      "linkId": "LCVMA1DE001",
       "text": "Seção 1 — Tipo de Violência",
       "type": "group",
       "item": [
         {
-          "linkId": "/secao1-tipo-violencia/afirmativas",
+          "linkId": "LCVMA1DE001-pergunta",
           "text": "Das afirmativas abaixo, quais representam algo que você já viveu ou vivencia?",
           "definition": "Tipo de violência sofrida ou vivenciada.",
           "type": "choice",
@@ -126,9 +133,8 @@
             {
               "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
               "valueExpression": {
-                "description": "Somar os pontos de cada uma das respostas à pergunta LCVM.A1.DE12",
                 "language": "text/fhirpath",
-                "expression": "%resource.item.where(linkId='/secao1-tipo-violencia/afirmativas').answer.valueCoding.extension.where(url='http://hl7.org/fhir/StructureDefinition/ordinalValue').value.aggregate($total + $this, 0)"
+                "description": "Somar os pontos de cada uma das respostas à pergunta LCVM.A1.DE001"
               }
             }
           ]
@@ -141,21 +147,21 @@
       "type": "group",
       "item": [
         {
-          "linkId": "/secao2-tratamento-servicos/recebe-atendimento",
-          "text": "Em relação às afirmações respondidas anteriormente, você está recebendo atendimento ou acompanhamento de algum serviço de saúde ou de proteção às mulheres?",
+          "linkId": "LCVMA1DE14",
+          "text": "Você está recebendo atendimento?",
           "type": "boolean"
         },
         {
-          "linkId": "/secao2-tratamento-servicos/qual-servico",
+          "linkId": "LCVMA1DE10",
           "text": "Caso afirmativo, qual serviço?",
           "definition": "Acompanhamento em Serviço de Saúde.",
           "type": "choice",
-          "required": true,
           "repeats": true,
+          "required": true,
           "answerValueSet": "https://mangara.hsl.org.br/fhir/ValueSet/lcvm_servicoSaude",
           "enableWhen": [
             {
-              "question": "/secao2-tratamento-servicos/recebe-atendimento",
+              "question": "LCVMA1DE14",
               "operator": "=",
               "answerBoolean": true
             }

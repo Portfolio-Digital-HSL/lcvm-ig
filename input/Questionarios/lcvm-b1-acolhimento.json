@@ -16,14 +16,13 @@
           "linkId": "/cadastro/cpf",
           "text": "CPF",
           "type": "string",
-          "required": true,
           "extension": [
             {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-constraint",
               "extension": [
                 {
                   "url": "expression",
-                  "valueString": "matches('^[0-9]{11}$')"
+                  "valueString": "answer.value.matches('^[0-9]{11}$')"
                 }
               ]
             }
@@ -97,34 +96,6 @@
       ]
     },
     {
-      "linkId": "/socio",
-      "text": "Dados Sócio Demográficos",
-      "type": "group",
-      "item": [
-        {
-          "linkId": "/socio/procedencia",
-          "text": "Procedência",
-          "type": "choice",
-          "required": true,
-          "answerValueSet": "https://terminologia.saude.gov.br/fhir/ValueSet/BRProcedencia"
-        },
-        {
-          "linkId": "/socio/carater",
-          "text": "Caráter do atendimento",
-          "type": "choice",
-          "required": true,
-          "answerValueSet": "https://terminologia.saude.gov.br/fhir/ValueSet/BRCaraterAtendimento"
-        },
-        {
-          "linkId": "/socio/moradia",
-          "text": "Moradia",
-          "type": "choice",
-          "required": true,
-          "answerValueSet": "https://mangara.org.br/fhir/ValueSet/lcvm_Domicilio"
-        }
-      ]
-    },
-    {
       "linkId": "/atendimento",
       "text": "Dados do Atendimento",
       "type": "group",
@@ -133,34 +104,21 @@
           "linkId": "/atendimento/data",
           "text": "Data da consulta",
           "type": "date",
-          "required": true,
-          "code": [
-            {
-              "code": "DataAtendimento"
-            }
-          ]
+          "required": true
         },
         {
           "linkId": "/atendimento/estabelecimento",
           "text": "Estabelecimento",
           "type": "string",
-          "initial": [
-            {
-              "valueString": "Hospital Sírio Libanês"
-            }
-          ],
-          "readOnly": true
+          "readOnly": true,
+          "initial": [{ "valueString": "Hospital Sírio Libanês" }]
         },
         {
           "linkId": "/atendimento/cnes",
           "text": "CNES",
           "type": "string",
-          "initial": [
-            {
-              "valueString": "2079127"
-            }
-          ],
-          "readOnly": true
+          "readOnly": true,
+          "initial": [{ "valueString": "2079127" }]
         }
       ]
     },
@@ -172,32 +130,23 @@
         {
           "linkId": "/profissional/nome",
           "text": "Nome do profissional",
-          "type": "string",
-          "code": [
-            {
-              "code": "ProfissionalNome"
-            }
-          ]
+          "type": "string"
         },
         {
           "linkId": "/profissional/conselho-uf",
           "text": "Conselho profissional UF",
-          "type": "string",
-          "code": [
-            {
-              "code": "ConselhoProfissionalNomeUF"
-            }
-          ]
+          "type": "string"
         },
         {
           "linkId": "/profissional/conselho-numero",
           "text": "Número do conselho",
-          "type": "string",
-          "code": [
-            {
-              "code": "ConselhoProfissionalNumero"
-            }
-          ]
+          "type": "string"
+        },
+        {
+          "linkId": "/profissional/ocupacao",
+          "text": "Ocupação",
+          "type": "choice",
+          "answerValueSet": "https://terminologia.saude.gov.br/fhir/ValueSet/BROcupacao"
         }
       ]
     },
@@ -217,6 +166,12 @@
           "text": "Orientação sexual",
           "type": "choice",
           "required": true,
+          "answerValueSet": "https://terminologia.saude.gov.br/fhir/ValueSet/OrientacaoSexual"
+        },
+        {
+          "linkId": "/soap/subjetivo/estado-civil",
+          "text": "Estado Civil",
+          "type": "choice",
           "answerValueSet": "https://terminologia.saude.gov.br/fhir/ValueSet/BREstadoCivil"
         },
         {
@@ -235,40 +190,58 @@
       ]
     },
     {
-      "linkId": "/avaliacao",
+      "linkId": "/soap/objetivo",
+      "text": "Objetivo",
+      "type": "string",
+      "required": true
+    },
+    {
+      "linkId": "/soap/avaliacao",
       "text": "Avaliação / Problemas",
       "type": "group",
       "item": [
         {
-          "linkId": "/avaliacao/ciap2",
+          "linkId": "/soap/avaliacao/ciap2",
           "text": "CIAP2",
           "type": "choice",
           "required": true,
           "repeats": true,
-          "answerValueSet": "https:////terminologia.saude.gov.br/fhir/ValueSet/BRCIAP2"
+          "answerValueSet": "https://terminologia.saude.gov.br/fhir/ValueSet/BRCIAP2"
         },
         {
-          "linkId": "/avaliacao/cid10",
+          "linkId": "/soap/avaliacao/severidade-ciap2",
+          "text": "Severidade CIAP2",
+          "type": "choice",
+          "answerValueSet": "http://hl7.org/fhir/ValueSet/condition-severity"
+        },
+        {
+          "linkId": "/soap/avaliacao/cid10",
           "text": "CID10",
           "type": "choice",
           "required": true,
           "repeats": true,
           "answerValueSet": "https://terminologia.saude.gov.br/fhir/ValueSet/BRCID10"
+        },
+        {
+          "linkId": "/soap/avaliacao/severidade-cid10",
+          "text": "Severidade CID10",
+          "type": "choice",
+          "answerValueSet": "http://hl7.org/fhir/ValueSet/condition-severity"
         }
       ]
     },
     {
-      "linkId": "/plano",
+      "linkId": "/soap/plano",
       "text": "Plano",
       "type": "group",
       "item": [
         {
-          "linkId": "/plano/cuidados",
+          "linkId": "/soap/plano/cuidados",
           "text": "Plano de cuidados",
           "type": "string"
         },
         {
-          "linkId": "/plano/desfecho",
+          "linkId": "/soap/plano/desfecho",
           "text": "Desfecho",
           "type": "choice",
           "answerValueSet": "https://mangara.hsl.org.br/fhir/ValueSet/tipo-desfecho_mangara"

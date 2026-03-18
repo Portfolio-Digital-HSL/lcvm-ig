@@ -105,32 +105,31 @@ Usage: #definition
 •⁠  ⁠item[=].item[=].initial.valueString = "2079127"
 •⁠  ⁠item[=].item[=].readOnly = true
 
-
 // ================= PROFISSIONAL================//
 
-•⁠  ⁠item[+].linkId = "/profissional"
-•⁠  ⁠item[=].text = "Dados do Profissional"
-•⁠  ⁠item[=].type = #group
+* item[+].linkId = "/profissional"
+* item[=].text = "Dados do Profissional"
+* item[=].type = #group
 
-•⁠  ⁠item[=].item[+].linkId = "/profissional/nome"
-•⁠  ⁠item[=].item[=].text = "Nome do profissional"
-•⁠  ⁠item[=].item[=].type = #string
-•⁠  ⁠item[=].item[=].code[=].code = #ProfissionalNome
+* item[=].item[+].linkId = "/profissional/nome"
+* item[=].item[=].text = "Nome do profissional"
+* item[=].item[=].type = #string
+* item[=].item[=].code[0].code = "ProfissionalNome"
 
-•⁠  ⁠item[=].item[+].linkId = "/profissional/conselho-uf"
-•⁠  ⁠item[=].item[=].text = "Conselho profissional UF"
-•⁠  ⁠item[=].item[=].type = #string
-•⁠  ⁠item[=].item[=].code[=].code = #ConselhoProfissionalNomeUF
+* item[=].item[+].linkId = "/profissional/conselho-uf"
+* item[=].item[=].text = "Conselho profissional UF"
+* item[=].item[=].type = #string
+* item[=].item[=].code[0].code = "ConselhoProfissionalNomeUF"
 
-•⁠  ⁠item[=].item[+].linkId = "/profissional/conselho-numero"
-•⁠  ⁠item[=].item[=].text = "Número do conselho"
-•⁠  ⁠item[=].item[=].type = #string
-•⁠  ⁠item[=].item[=].code[=].code = #ConselhoProfissionalNumero
+* item[=].item[+].linkId = "/profissional/conselho-numero"
+* item[=].item[=].text = "Número do conselho"
+* item[=].item[=].type = #string
+* item[=].item[=].code[0].code = "ConselhoProfissionalNumero"
 
-* item[+].linkId = "/profissional/ocupacao"
-* item[=].text = "Ocupação"
-* item[=].type = #choice
-* item[=].answerValueSet = "https://terminologia.saude.gov.br/fhir/ValueSet/BROcupacao"
+* item[=].item[+].linkId = "/profissional/ocupacao"
+* item[=].item[=].text = "Ocupação"
+* item[=].item[=].type = #choice
+* item[=].item[=].answerValueSet = "https://terminologia.saude.gov.br/fhir/ValueSet/BROcupacao"
 
 // ==========================
 //      SOAP - SUBJETIVO
