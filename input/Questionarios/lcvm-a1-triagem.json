@@ -1,0 +1,168 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "lcvm-A1-triagem",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire"
+    ]
+  },
+  "url": "https://mangara.hsl.org.br/fhir/Questionnaire/lcvm-a1-triagem",
+  "version": "0.3.0",
+  "title": "LCVM — A1 Triagem",
+  "description": "Instrumento de Triagem da Linha de Cuidado de Combate à Violência contra a Mulher (LCVM), etapa A1, para identificação de mulheres em situação de violência e encaminhamento para serviços de saúde ou de proteção às mulheres.",
+  "status": "draft",
+  "language": "pt-BR",
+  "subjectType": ["Patient"],
+  "item": [
+    {
+      "linkId": "/cadastro",
+      "text": "Cadastro",
+      "type": "group",
+      "required": true,
+      "item": [
+        {
+          "linkId": "/cadastro/cpf",
+          "text": "CPF",
+          "definition": "Identificador pessoal da mulher, número do CPF. Informações cadastrais extraídas da API do CADSUS.",
+          "type": "string",
+          "required": true
+        },
+        {
+          "linkId": "/cadastro/nome-completo",
+          "text": "Nome completo",
+          "definition": "Nome completo da mulher, seguindo preenchimento do CADSUS.",
+          "type": "string",
+          "required": true
+        },
+        {
+          "linkId": "/cadastro/nome-social",
+          "text": "Nome Social",
+          "definition": "Nome social utilizado, devendo ser preenchido pela mulher.",
+          "type": "string",
+          "required": true
+        },
+        {
+          "linkId": "/cadastro/nacionalidade",
+          "text": "Nacionalidade",
+          "definition": "País de nacionalidade do paciente.",
+          "type": "choice",
+          "required": true,
+          "answerValueSet": "http://hl7.org/fhir/ValueSet/iso3166-1-2"
+        },
+        {
+          "linkId": "/cadastro/data-nascimento",
+          "text": "Data de Nascimento",
+          "definition": "Data de Nascimento do Paciente.",
+          "type": "date",
+          "required": true
+        },
+        {
+          "linkId": "/cadastro/identidade-genero",
+          "text": "Identidade de Gênero",
+          "definition": "Como o paciente identifica o seu gênero sexual.",
+          "type": "choice",
+          "required": true,
+          "repeats": false,
+          "answerValueSet": "https://terminologia.saude.gov.br/fhir/ValueSet/BRIdentidadeGenero"
+        },
+        {
+          "linkId": "/cadastro/raca-cor",
+          "text": "Raça/Cor",
+          "type": "choice",
+          "required": true,
+          "repeats": false,
+          "answerValueSet": "https://terminologia.saude.gov.br/fhir/ValueSet/BRRacaCor"
+        },
+        {
+          "linkId": "/cadastro/etnia",
+          "text": "Etnia",
+          "type": "choice",
+          "required": false,
+          "repeats": false,
+          "answerValueSet": "https://terminologia.saude.gov.br/fhir/ValueSet/BREtniaIndigena"
+        },
+        {
+          "linkId": "/cadastro/telefone",
+          "text": "Telefone",
+          "type": "string",
+          "required": true
+        },
+        {
+          "linkId": "/cadastro/cidade",
+          "text": "Cidade",
+          "type": "choice",
+          "required": true,
+          "answerValueSet": "https://terminologia.saude.gov.br/fhir/ValueSet/BRMunicipio"
+        },
+        {
+          "linkId": "/cadastro/uf",
+          "text": "UF",
+          "type": "choice",
+          "required": true,
+          "repeats": false,
+          "answerValueSet": "https://terminologia.saude.gov.br/fhir/ValueSet/BRUnidadeFederativa"
+        }
+      ]
+    },
+    {
+      "linkId": "/secao1-tipo-violencia",
+      "text": "Seção 1 — Tipo de Violência",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "/secao1-tipo-violencia/afirmativas",
+          "text": "Das afirmativas abaixo, quais representam algo que você já viveu ou vivencia?",
+          "definition": "Tipo de violência sofrida ou vivenciada.",
+          "type": "choice",
+          "repeats": true,
+          "answerValueSet": "https://mangara.hsl.org.br/fhir/ValueSet/lcvm_tipoViolencia"
+        },
+        {
+          "linkId": "/secao1-tipo-violencia/escore",
+          "text": "Escore do tipo de violência",
+          "type": "integer",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "description": "Somar os pontos de cada uma das respostas à pergunta LCVM.A1.DE12",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='/secao1-tipo-violencia/afirmativas').answer.valueCoding.extension.where(url='http://hl7.org/fhir/StructureDefinition/ordinalValue').value.aggregate($total + $this, 0)"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "/secao2-tratamento-servicos",
+      "text": "Seção 2 — Tratamento Serviços de Saúde",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "/secao2-tratamento-servicos/recebe-atendimento",
+          "text": "Em relação às afirmações respondidas anteriormente, você está recebendo atendimento ou acompanhamento de algum serviço de saúde ou de proteção às mulheres?",
+          "type": "boolean"
+        },
+        {
+          "linkId": "/secao2-tratamento-servicos/qual-servico",
+          "text": "Caso afirmativo, qual serviço?",
+          "definition": "Acompanhamento em Serviço de Saúde.",
+          "type": "choice",
+          "required": true,
+          "repeats": true,
+          "answerValueSet": "https://mangara.hsl.org.br/fhir/ValueSet/lcvm_servicoSaude",
+          "enableWhen": [
+            {
+              "question": "/secao2-tratamento-servicos/recebe-atendimento",
+              "operator": "=",
+              "answerBoolean": true
+            }
+          ],
+          "enableBehavior": "all"
+        }
+      ]
+    }
+  ]
+}
