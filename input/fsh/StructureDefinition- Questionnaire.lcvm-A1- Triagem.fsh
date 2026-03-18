@@ -13,7 +13,7 @@ Alias: $launch     = http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-question
 Instance: LCVM-A1-Triagem
 InstanceOf: http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire
 Title: "LCVM — A1 Triagem"
-Description: "Instrumento de Triagem da Linha de Cuidado de CombaATE Violência contra a Mulher (LCVM), etapa A1, para identificação de mulheres em situação de violência e encaminhamento para serviços de saúde ou de proteção às mulheres."
+Description: "Instrumento de Triagem da Linha de Cuidado de Combate à Violência contra a Mulher (LCVM), etapa A1, para identificação de mulheres em situação de violência e encaminhamento para serviços de saúde ou de proteção às mulheres."
 Usage: #definition
 * url    = "https://mangara.hsl.org.br/fhir/Questionnaire/lcvm-a1-triagem"
 * version = "0.3.0"
@@ -56,7 +56,7 @@ Usage: #definition
 * item[=].item[=].required = true
 * item[=].item[=].answerValueSet = "http://hl7.org/fhir/ValueSet/iso3166-1-2"
 
-* item[=].item[+].linkId = "LCVMA1DE5"
+* item[=].item[+].linkId = "LCVMA1DE05"
 * item[=].item[=].text   = "Data de Nascimento"
 * item[=].item[=].definition = "Data de Nascimento do Paciente."
 * item[=].item[=].type     = #date
