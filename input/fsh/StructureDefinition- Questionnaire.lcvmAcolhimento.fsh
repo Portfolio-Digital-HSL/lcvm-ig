@@ -21,10 +21,9 @@ Usage: #definition
 * item[=].item[+].linkId = "/cadastro/cpf"
 * item[=].item[=].text = "CPF"
 * item[=].item[=].type = #string
-* item[=].item[=].required = true
-* item[=].item[=].extension[+].url = $constraint
-* item[=].item[=].extension[=].extension[+].url = "expression"
-* item[=].item[=].extension[=].extension[=].valueString = "matches('^[0-9]{11}$')"
+* item[=].* item[=].item[=].extension[=].extension[=].valueString = "answer.value.matches('^[0-9]{11}$')"
+* item[=].item[=].extension[=].extension[=].valueString = "CPF deve conter exatamente 11 dígitos numéricos"
+
 
 * item[=].item[+].linkId = "/cadastro/nome-completo"
 * item[=].item[=].text = "Nome completo"
@@ -82,31 +81,6 @@ Usage: #definition
 * item[=].item[=].answerValueSet = "https://terminologia.saude.gov.br/fhir/ValueSet/BRUnidadeFederativa"
 
 
-
-// ================= SOCIODEMOGRAFICO =================
-
-* item[+].linkId = "/socio"
-* item[=].text = "Dados Sócio Demográficos"
-* item[=].type = #group
-
-* item[=].item[+].linkId = "/socio/procedencia"
-* item[=].item[=].text = "Procedência"
-* item[=].item[=].type = #choice
-* item[=].item[=].required = true
-* item[=].item[=].answerValueSet = "https://terminologia.saude.gov.br/fhir/ValueSet/BRProcedencia"
-
-* item[=].item[+].linkId = "/socio/carater"
-* item[=].item[=].text = "Caráter do atendimento"
-* item[=].item[=].type = #choice
-* item[=].item[=].required = true
-* item[=].item[=].answerValueSet = "https://terminologia.saude.gov.br/fhir/ValueSet/BRCaraterAtendimento"
-
-* item[=].item[+].linkId = "/socio/moradia"
-* item[=].item[=].text = "Moradia"
-* item[=].item[=].type = #choice
-* item[=].item[=].required = true
-* item[=].item[=].answerValueSet = "https://mangara.org.br/fhir/ValueSet/lcvm_Domicilio"
-
 // ================= ATENDIMENTO================//
 
 •⁠  ⁠item[+].linkId = "/atendimento"
@@ -153,9 +127,14 @@ Usage: #definition
 •⁠  ⁠item[=].item[=].type = #string
 •⁠  ⁠item[=].item[=].code[=].code = #ConselhoProfissionalNumero
 
+* item[+].linkId = "/profissional/ocupacao"
+* item[=].text = "Ocupação"
+* item[=].type = #choice
+* item[=].answerValueSet = "https://terminologia.saude.gov.br/fhir/ValueSet/BROcupacao"
 
-
-// ================= SOAP SUBJETIVO =================
+// ==========================
+//      SOAP - SUBJETIVO
+// ==========================
 
 * item[+].linkId = "/soap/subjetivo"
 * item[=].text = "Subjetivo"
@@ -170,11 +149,12 @@ Usage: #definition
 * item[=].item[=].text = "Orientação sexual"
 * item[=].item[=].type = #choice
 * item[=].item[=].required = true
+* item[=].item[=].answerValueSet = "https://terminologia.saude.gov.br/fhir/ValueSet/OrientacaoSexual"
+
+* item[=].item[+].linkId = "/soap/subjetivo/estado-civil"
+* item[=].item[=].text = "Estado Civil"
+* item[=].item[=].type = #choice
 * item[=].item[=].answerValueSet = "https://terminologia.saude.gov.br/fhir/ValueSet/BREstadoCivil"
-
-
-
-// ================= DEFICIENCIA =================
 
 * item[=].item[+].linkId = "/soap/subjetivo/deficiencia"
 * item[=].item[=].text = "Possui deficiência?"
@@ -187,41 +167,70 @@ Usage: #definition
 * item[=].item[=].repeats = true
 * item[=].item[=].answerValueSet = "https://mangara.hsl.org.br/fhir/ValueSet/BRTipoDeficiencia"
 
+// ==========================
+// SOAP - OBJETIVO
+// ==========================
 
+* item[+].linkId = "/soap/objetivo"
+* item[=].text = "Objetivo"
+* item[=].type = #string
+* item[=].required = true
 
-// ================= AVALIACAO =================
+// ==========================
+// SOAP - AVALIAÇÃO / PROBLEMAS
+// ==========================
 
-* item[+].linkId = "/avaliacao"
+* item[+].linkId = "/soap/avaliacao"
 * item[=].text = "Avaliação / Problemas"
 * item[=].type = #group
 
-* item[=].item[+].linkId = "/avaliacao/ciap2"
+* item[=].item[+].linkId = "/soap/avaliacao/ciap2"
 * item[=].item[=].text = "CIAP2"
 * item[=].item[=].type = #choice
-* item[=].item[=].repeats = true
 * item[=].item[=].required = true
-* item[=].item[=].answerValueSet = "https:////terminologia.saude.gov.br/fhir/ValueSet/BRCIAP2"
+* item[=].item[=].repeats = true
+* item[=].item[=].answerValueSet = "https://terminologia.saude.gov.br/fhir/ValueSet/BRCIAP2"
 
-* item[=].item[+].linkId = "/avaliacao/cid10"
+* item[=].item[+].linkId = "/soap/avaliacao/severidade-ciap2"
+* item[=].item[=].text = "Severidade CIAP2"
+* item[=].item[=].type = #choice
+* item[=].item[=].answerValueSet = "http://hl7.org/fhir/ValueSet/condition-severity"
+
+* item[=].item[+].linkId = "/soap/avaliacao/cid10"
 * item[=].item[=].text = "CID10"
 * item[=].item[=].type = #choice
-* item[=].item[=].repeats = true
 * item[=].item[=].required = true
+* item[=].item[=].repeats = true
 * item[=].item[=].answerValueSet = "https://terminologia.saude.gov.br/fhir/ValueSet/BRCID10"
 
+* item[=].item[+].linkId = "/soap/avaliacao/severidade-cid10"
+* item[=].item[=].text = "Severidade CID10"
+* item[=].item[=].type = #choice
+* item[=].item[=].answerValueSet = "http://hl7.org/fhir/ValueSet/condition-severity"
 
 
-// ================= PLANO =================
+// ==========================
+// SOAP-PLANO
+// ==========================
 
-* item[+].linkId = "/plano"
+* item[+].linkId = "/soap/plano"
 * item[=].text = "Plano"
 * item[=].type = #group
 
-* item[=].item[+].linkId = "/plano/cuidados"
+* item[=].item[+].linkId = "/soap/plano/cuidados"
 * item[=].item[=].text = "Plano de cuidados"
 * item[=].item[=].type = #string
 
-* item[=].item[+].linkId = "/plano/desfecho"
+* item[=].item[+].linkId = "/soap/plano/desfecho"
 * item[=].item[=].text = "Desfecho"
 * item[=].item[=].type = #choice
 * item[=].item[=].answerValueSet = "https://mangara.hsl.org.br/fhir/ValueSet/tipo-desfecho_mangara"
+
+
+
+
+
+
+
+
+
