@@ -13,6 +13,7 @@
   "subjectType": [
     "Patient"
   ],
+  "item": [
     {
       "linkId": "/soap/subjetivo",
       "text": "Subjetivo",
