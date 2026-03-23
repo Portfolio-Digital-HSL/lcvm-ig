@@ -7,14 +7,13 @@
     ]
   },
   "url": "https://mangara.hsl.org.br/fhir/Questionnaire/lcvm-a1-triagem",
-  "version": "0.3.0",
+  "name": "LCVM-A1-Triagem",
   "title": "LCVM — A1 Triagem",
-  "description": "Instrumento de Triagem da Linha de Cuidado de Combate à Violência contra a Mulher (LCVM), etapa A1, para identificação de mulheres em situação de violência e encaminhamento para serviços de saúde ou de proteção às mulheres.",
+  "version": "0.3.0",
   "status": "draft",
   "language": "pt-BR",
-  "subjectType": [
-    "Patient"
-  ],
+  "description": "Instrumento de Triagem da Linha de Cuidado de Combate à Violência contra a Mulher (LCVM), etapa A1, para identificação de mulheres em situação de violência e encaminhamento para serviços de saúde ou de proteção às mulheres.",
+  "subjectType": ["Patient"],
   "item": [
     {
       "linkId": "Cadastro",
@@ -140,7 +139,9 @@
             {
               "question": "LCVM.A1.DE014",
               "operator": "=",
-              "answerString": "Y"
+              "answerCoding": {
+                "code": "Y"
+              }
             }
           ]
         }
@@ -169,8 +170,8 @@
               "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
               "valueExpression": {
                 "language": "text/fhirpath",
-                "description": "Somar os pontos de cada uma das respostas à pergunta LCVM.A1.DE12",
-                "expression": "%resource.item.where(linkId='LCVM.A1.DE12').answer.valueCoding.extension.where(url='http://hl7.org/fhir/StructureDefinition/ordinalValue').value.aggregate($total + $this, 0)"
+                "description": "Somar os pontos de cada uma das respostas à pergunta LCVM.A1.DE001",
+                "expression": "%resource.item.where(linkId='LCVM.A1.DE001').answer.valueCoding.extension.where(url='http://hl7.org/fhir/StructureDefinition/ordinalValue').value.aggregate($total + $this, 0)"
               }
             }
           ]
