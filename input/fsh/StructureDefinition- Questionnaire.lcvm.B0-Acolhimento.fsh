@@ -10,6 +10,8 @@ Usage: #definition
 * status = #draft
 * language = #pt-BR
 * subjectType[+] = #Patient
+
+
 // ==========================
 //      SOAP - SUBJETIVO
 // ==========================
@@ -17,6 +19,17 @@ Usage: #definition
 * item[+].linkId = "/soap/subjetivo"
 * item[=].text = "Subjetivo"
 * item[=].type = #group
+
+
+// LCVM.B1.DE.007 — Orientação Sexual
+* item[=].item[+].linkId = "LCVM.B1.DE.007"
+* item[=].item[=].text   = "Qual sua orientação sexual"
+* item[=].item[=].definition = "Como o paciente identifica a sua orientação sexual."
+* item[=].item[=].type     = #choice
+* item[=].item[=].required = true
+* item[=].item[=].repeats  = false
+* item[=].item[=].answerValueSet = "https://mangara.hsl.org.br/fhir/ValueSet/OrientacaoSexual_LCVM"
+
 
 * item[=].item[+].linkId = "/soap/subjetivo/texto"
 * item[=].item[=].text = "Subjetivo"
