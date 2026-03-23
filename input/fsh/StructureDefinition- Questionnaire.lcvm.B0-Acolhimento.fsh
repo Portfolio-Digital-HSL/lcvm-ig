@@ -23,11 +23,6 @@ Usage: #definition
 * item[=].item[=].type = #string
 * item[=].item[=].required = true
 
-* item[=].item[+].linkId = "/soap/subjetivo/orientacao"
-* item[=].item[=].text = "Orientação sexual"
-* item[=].item[=].type = #choice
-* item[=].item[=].required = true
-* item[=].item[=].answerValueSet = "https://terminologia.saude.gov.br/fhir/ValueSet/OrientacaoSexual"
 
 // ==========================
 // SOAP - OBJETIVO
