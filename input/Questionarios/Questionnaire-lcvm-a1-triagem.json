@@ -1,0 +1,210 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "LCVM-A1-Triagem",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire"
+    ]
+  },
+  "url": "https://mangara.hsl.org.br/fhir/Questionnaire/lcvm-a1-triagem",
+  "version": "0.3.0",
+  "title": "LCVM — A1 Triagem",
+  "description": "Instrumento de Triagem da Linha de Cuidado de Combate à Violência contra a Mulher (LCVM), etapa A1, para identificação de mulheres em situação de violência e encaminhamento para serviços de saúde ou de proteção às mulheres.",
+  "status": "draft",
+  "language": "pt-BR",
+  "subjectType": [
+    "Patient"
+  ],
+  "item": [
+    {
+      "linkId": "Cadastro",
+      "text": "Cadastro",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "LCVM.A1.DE.001",
+          "definition": "Identificador pessoal da mulher, número do CPF. Informações cadastrais extraídas da API do CADSUS.",
+          "text": "CPF",
+          "type": "string",
+          "required": true
+        },
+        {
+          "linkId": "LCVM.A1.DE.002",
+          "definition": "Nome completo da mulher, seguindo preenchimento do CADSUS.",
+          "text": "Nome completo",
+          "type": "string",
+          "required": true
+        },
+        {
+          "linkId": "LCVM.A1.DE.003",
+          "definition": "Nome social utilizado, devendo ser preenchido pela mulher.",
+          "text": "Nome Social",
+          "type": "string",
+          "required": true
+        },
+        {
+          "linkId": "LCVM.A1.DE.004",
+          "definition": "País de nacionalidade do paciente.",
+          "text": "Nacionalidade",
+          "type": "choice",
+          "required": true,
+          "answerValueSet": "http://hl7.org/fhir/ValueSet/iso3166-1-2"
+        },
+        {
+          "linkId": "LCVM.A1.DE.005",
+          "definition": "Data de Nascimento do Paciente.",
+          "text": "Data de Nascimento",
+          "type": "date",
+          "required": true
+        },
+        {
+          "linkId": "LCVM.A1.DE.006",
+          "definition": "Como o paciente identifica o seu gênero sexual.",
+          "text": "Identidade de Gênero",
+          "type": "choice",
+          "required": true,
+          "repeats": false,
+          "answerValueSet": "https://mangara.hsl.org.br/fhir/ValueSet/IdentidadeGenero_LCVM"
+        },
+        {
+          "linkId": "LCVM.A1.DE.008",
+          "text": "Raça/Cor",
+          "type": "choice",
+          "required": true,
+          "repeats": false,
+          "answerValueSet": "https://terminologia.saude.gov.br/fhir/ValueSet/BRRacaCor"
+        },
+        {
+          "linkId": "LCVM.A1.DE.009",
+          "text": "Etnia",
+          "type": "choice",
+          "required": false,
+          "repeats": false,
+          "answerValueSet": "https://terminologia.saude.gov.br/fhir/ValueSet/BREtniaIndigena"
+        },
+        {
+          "linkId": "LCVM.A1.DE.010",
+          "text": "Telefone",
+          "type": "string",
+          "required": true
+        },
+        {
+          "linkId": "LCVM.A1.DE.011",
+          "text": "CEP",
+          "type": "string",
+          "required": true
+        },
+        {
+          "linkId": "LCVM.A1.DE.012",
+          "text": "Cidade",
+          "type": "string",
+          "required": true
+        },
+        {
+          "linkId": "LCVM.A1.DE.013",
+          "text": "UF",
+          "type": "string",
+          "required": true
+        },
+        {
+          "linkId": "LCVM.A1.DE.013A",
+          "text": "Reside em área rural ?",
+          "type": "choice",
+          "required": true,
+          "repeats": false,
+          "answerValueSet": "http://terminology.hl7.org/ValueSet/yes-no-unknown-not-asked"
+        }
+      ]
+    },
+    {
+      "linkId": "Seção 0 - Deficiência",
+      "text": "Seção 0 — Tipo de Deficiencia",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "LCVM.A1.DE014",
+          "definition": "Informa se possui algum tipo de deficiência",
+          "text": "Você possui algum tipo de deficiência?",
+          "type": "choice",
+          "repeats": false,
+          "answerValueSet": "https://mangara.hsl.org.br/fhir/ValueSet/LCVM_Deficiencia"
+        },
+        {
+          "linkId": "LCVM.A1.DE015",
+          "definition": "Tipo de deficiência que a pessoa tem.",
+          "text": "Qual o tipo de deficiência que você tem?",
+          "type": "choice",
+          "repeats": true,
+          "answerValueSet": "https://mangara.hsl.org.br/fhir/ValueSet/BRTipoDeficiencia",
+          "enableWhen": [
+            {
+              "question": "LCVM.A1.DE014",
+              "operator": "=",
+              "answerString": "Y"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "LCVM.A1.Secao1",
+      "text": "Seção 1 — Tipo de Violência",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "LCVM.A1.DE001",
+          "definition": "Tipo de violência sofrida ou vivenciada.",
+          "text": "Das afirmativas abaixo, quais representam algo que você já viveu ou vivencia?",
+          "type": "choice",
+          "repeats": true,
+          "answerValueSet": "https://mangara.hsl.org.br/fhir/ValueSet/lcvm_tipoViolencia"
+        },
+        {
+          "linkId": "LCVM.A1.DE1E",
+          "text": "Escore do tipo de violência",
+          "type": "integer",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "description": "Somar os pontos de cada uma das respostas à pergunta LCVM.A1.DE12",
+                "expression": "%resource.item.where(linkId='LCVM.A1.DE12').answer.valueCoding.extension.where(url='http://hl7.org/fhir/StructureDefinition/ordinalValue').value.aggregate($total + $this, 0)"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "LCVM.A1.Secao2",
+      "text": "Seção 2 — Tratamento Serviços de Saúde",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "LCVM.A1.DE14",
+          "text": "Em relação às afirmações respondidas anteriormente, você está recebendo atendimento ou acompanhamento de algum serviço de saúde ou de proteção às mulheres?",
+          "type": "boolean"
+        },
+        {
+          "linkId": "LCVM.A1.DE15",
+          "definition": "Acompanhamento em Serviço de Saúde.",
+          "text": "Caso afirmativo, qual serviço?",
+          "type": "choice",
+          "required": true,
+          "repeats": true,
+          "answerValueSet": "https://mangara.hsl.org.br/fhir/ValueSet/lcvm_servicoSaude",
+          "enableWhen": [
+            {
+              "question": "LCVM.A1.DE14",
+              "operator": "=",
+              "answerBoolean": true
+            }
+          ],
+          "enableBehavior": "all"
+        }
+      ]
+    }
+  ]
+}
