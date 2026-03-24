@@ -122,7 +122,7 @@ Usage: #definition
 * item[=].item[=].type           = #choice
 * item[=].item[=].required       = true
 * item[=].item[=].repeats        = false
-* item[=].item[=].answerValueSet = "http://terminology.hl7.org/ValueSet/yes-no-unknown-not-asked"
+* item[=].item[=].answerValueSet = "https://mangara.hsl.org.br/fhir/ValueSet/SimNaoNaoSabe"
 
 
 // ============================================================
