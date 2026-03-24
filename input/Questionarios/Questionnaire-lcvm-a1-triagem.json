@@ -63,7 +63,7 @@
           "type": "choice",
           "required": true,
           "repeats": false,
-          "answerValueSet": "https://mangara.hsl.org.br/fhir/ValueSet/IdentidadeGenero_LCVM"
+          "answerValueSet": "https://terminologia.saude.gov.br/fhir/ValueSet/BRIdentidadeGenero"
         },
         {
           "linkId": "LCVM.A1.DE.008",
