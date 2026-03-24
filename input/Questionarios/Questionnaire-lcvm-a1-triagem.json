@@ -111,7 +111,7 @@
           "type": "choice",
           "required": true,
           "repeats": false,
-          "answerValueSet": "http://terminology.hl7.org/ValueSet/yes-no-unknown-not-asked"
+          "answerValueSet": "https://mangara.hsl.org.br/fhir/ValueSet/SimNaoNaoSabe"
         }
       ]
     },
