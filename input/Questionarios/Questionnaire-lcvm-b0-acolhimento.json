@@ -65,7 +65,7 @@
           "linkId": "/soap/avaliacao/cid10",
           "text": "CID10",
           "type": "choice",
-          "required": true,
+          "required": false,
           "repeats": true,
           "answerValueSet": "https://terminologia.saude.gov.br/fhir/ValueSet/BRCID10"
         },
@@ -92,6 +92,11 @@
           "text": "Desfecho",
           "type": "choice",
           "answerValueSet": "https://mangara.hsl.org.br/fhir/ValueSet/tipo-desfecho_mangara"
+        },
+        {
+          "linkId": "/soap/plano/anotacoes",
+          "text": "Anotações",
+          "type": "string"
         }
       ]
     }
